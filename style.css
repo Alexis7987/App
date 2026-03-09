@@ -88,6 +88,8 @@ body {
 .app-container {
     display: flex;
     min-height: 100vh;
+    width: 100%;
+    align-items: flex-start;
 }
 
 /* Glass Components */
@@ -103,6 +105,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
+    flex-shrink: 0;
     margin: 1.5rem 0 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -216,6 +219,7 @@ body {
     flex: 1;
     padding: 1.5rem 2.5rem;
     min-width: 0; /* Prevents overflow in flex child */
+    width: 100%;
 }
 
 /* Top Header */
@@ -625,10 +629,12 @@ body {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding: 1rem;
     }
     
     .sidebar-header {
         margin: 0;
+        padding: 0;
     }
     
     .nav-links {
