@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,90 +50,158 @@
                 </div>
                 <div class="header-actions">
                     <button class="icon-btn glass"><i class="ri-notification-3-line"></i><span class="badge">3</span></button>
-                    <button class="btn btn-primary"><i class="ri-add-line"></i> New Project</button>
+                    <button class="btn btn-primary btn-new-project"><i class="ri-add-line"></i> New Project</button>
                 </div>
             </header>
-        <header class="dashboard-header">
-            <div>
-                <h1>Welcome back, Alexi</h1>
-                <p>Here's what's happening with your projects today.</p>
-            </div>
-            <button class="btn btn-primary"><i class="ri-add-line"></i> New Project</button>
-        </header>
+            
+            <!-- Dashboard View -->
+            <div id="view-dashboard" class="page-view active">
+                <header class="dashboard-header">
+                    <div>
+                        <h1>Welcome back, Alexi</h1>
+                        <p>Here's what's happening with your projects today.</p>
+                    </div>
+                    <button class="btn btn-primary btn-new-project"><i class="ri-add-line"></i> New Project</button>
+                </header>
 
-        <section class="stats-grid">
-            <div class="stat-card glass">
-                <div class="stat-icon"><i class="ri-wallet-3-line"></i></div>
-                <p class="stat-title">Total Revenue</p>
-                <h2 class="stat-val">$1.2M</h2>
-                <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 14.5%</div>
-            </div>
-            <div class="stat-card glass">
-                <div class="stat-icon purple"><i class="ri-user-smile-line"></i></div>
-                <p class="stat-title">Active Users</p>
-                <h2 class="stat-val">45,210</h2>
-                <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 8.2%</div>
-            </div>
-            <div class="stat-card glass">
-                <div class="stat-icon pink"><i class="ri-rocket-line"></i></div>
-                <p class="stat-title">Growth Rate</p>
-                <h2 class="stat-val">84%</h2>
-                <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 2.1%</div>
-            </div>
-            <div class="stat-card glass">
-                <div class="stat-icon red"><i class="ri-error-warning-line"></i></div>
-                <p class="stat-title">Churn</p>
-                <h2 class="stat-val">1.2%</h2>
-                <div class="stat-trend negative"><i class="ri-arrow-down-line"></i> 0.4%</div>
-            </div>
-        </section>
+                <section class="stats-grid">
+                    <div class="stat-card glass">
+                        <div class="stat-icon"><i class="ri-wallet-3-line"></i></div>
+                        <p class="stat-title">Total Revenue</p>
+                        <h2 class="stat-val">$1.2M</h2>
+                        <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 14.5%</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon purple"><i class="ri-user-smile-line"></i></div>
+                        <p class="stat-title">Active Users</p>
+                        <h2 class="stat-val">45,210</h2>
+                        <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 8.2%</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon pink"><i class="ri-rocket-line"></i></div>
+                        <p class="stat-title">Growth Rate</p>
+                        <h2 class="stat-val">84%</h2>
+                        <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 2.1%</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon red"><i class="ri-error-warning-line"></i></div>
+                        <p class="stat-title">Churn</p>
+                        <h2 class="stat-val">1.2%</h2>
+                        <div class="stat-trend negative"><i class="ri-arrow-down-line"></i> 0.4%</div>
+                    </div>
+                </section>
 
-        <section class="content-grid">
-            <div class="main-chart glass">
-                <div class="card-header">
-                    <h3>Revenue Overview</h3>
-                    <div class="dropdown">Last 30 Days <i class="ri-arrow-down-s-line"></i></div>
-                </div>
-                <div class="chart-container" id="chart-area">
-                    <!-- Chart visualization will go here via CSS/JS -->
+                <section class="content-grid">
+                    <div class="main-chart glass">
+                        <div class="card-header">
+                            <h3>Revenue Overview</h3>
+                            <select class="dropdown" id="time-filter">
+                                <option value="30">Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                                <option value="365">This Year</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="activity-feed glass">
+                        <div class="card-header">
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <ul class="activity-list">
+                            <li>
+                                <div class="avatar">
+                                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="User Avatar">
+                                </div>
+                                <div class="activity-info">
+                                    <p><strong>Sarah M.</strong> upgraded to premium plan</p>
+                                    <span class="time">2 mins ago</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="avatar pink-bg">
+                                    <i class="ri-vip-crown-line"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <p>System update <strong>v2.4</strong> completed</p>
+                                    <span class="time">1 hour ago</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="avatar">
+                                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User Avatar">
+                                </div>
+                                <div class="activity-info">
+                                    <p><strong>David K.</strong> deployed a new project</p>
+                                    <span class="time">3 hours ago</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div> <!-- End Dashboard View -->
+            
+            <!-- Analytics View -->
+            <div id="view-analytics" class="page-view">
+                <header class="dashboard-header">
+                    <div>
+                        <h1>Analytics</h1>
+                        <p>Deep dive into your organization's data.</p>
+                    </div>
+                </header>
+                <div class="glass" style="padding: 3rem; text-align: center;">
+                    <i class="ri-bar-chart-2-line" style="font-size: 4rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h2>Advanced Analytics Module</h2>
+                    <p class="text-muted mt-2">More charts and data tables will appear here.</p>
                 </div>
             </div>
-            <div class="activity-feed glass">
-                <div class="card-header">
-                    <h3>Recent Activity</h3>
+
+            <!-- Projects View -->
+            <div id="view-projects" class="page-view">
+                <header class="dashboard-header">
+                    <div>
+                        <h1>Projects</h1>
+                        <p>Manage your active streams.</p>
+                    </div>
+                    <button class="btn btn-primary btn-new-project"><i class="ri-add-line"></i> New Project</button>
+                </header>
+                <div class="glass" style="padding: 3rem; text-align: center;">
+                    <i class="ri-folder-open-line" style="font-size: 4rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                    <h2>No active projects</h2>
+                    <p class="text-muted mt-2">Create your first project to get started.</p>
                 </div>
-                <ul class="activity-list">
-                    <li>
-                        <div class="avatar">
-                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="User Avatar">
-                        </div>
-                        <div class="activity-info">
-                            <p><strong>Sarah M.</strong> upgraded to premium plan</p>
-                            <span class="time">2 mins ago</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="avatar pink-bg">
-                            <i class="ri-vip-crown-line"></i>
-                        </div>
-                        <div class="activity-info">
-                            <p>System update <strong>v2.4</strong> completed</p>
-                            <span class="time">1 hour ago</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="avatar">
-                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User Avatar">
-                        </div>
-                        <div class="activity-info">
-                            <p><strong>David K.</strong> deployed a new project</p>
-                            <span class="time">3 hours ago</span>
-                        </div>
-                    </li>
-                </ul>
             </div>
-        </section>
+
         </main>
+    </div>
+
+    <!-- New Project Modal -->
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Create New Project</h2>
+                <button class="icon-btn modal-close"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Project Name</label>
+                    <input type="text" class="form-input" placeholder="e.g. Nexus Redesign">
+                </div>
+                <div class="form-group">
+                    <label>Project Type</label>
+                    <select class="form-input">
+                        <option>Web Application</option>
+                        <option>Mobile App</option>
+                        <option>Marketing Campaign</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline modal-close">Cancel</button>
+                    <button class="btn btn-primary" onclick="alert('Project created successfully!'); document.getElementById('project-modal').classList.remove('active');">Create Project</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
