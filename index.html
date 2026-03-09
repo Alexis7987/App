@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus - The Billion Dollar App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand">Nexus<span>.AI</span></a>
+            <div class="nav-links">
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#settings">Settings</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline">Log in</button>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <header class="dashboard-header">
+            <div>
+                <h1>Welcome back, Alexi</h1>
+                <p>Here's what's happening with your projects today.</p>
+            </div>
+            <button class="btn btn-primary"><i class="ri-add-line"></i> New Project</button>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card glass">
+                <div class="stat-icon"><i class="ri-wallet-3-line"></i></div>
+                <p class="stat-title">Total Revenue</p>
+                <h2 class="stat-val">$1.2M</h2>
+                <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 14.5%</div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon purple"><i class="ri-user-smile-line"></i></div>
+                <p class="stat-title">Active Users</p>
+                <h2 class="stat-val">45,210</h2>
+                <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 8.2%</div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon pink"><i class="ri-rocket-line"></i></div>
+                <p class="stat-title">Growth Rate</p>
+                <h2 class="stat-val">84%</h2>
+                <div class="stat-trend positive"><i class="ri-arrow-up-line"></i> 2.1%</div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon red"><i class="ri-error-warning-line"></i></div>
+                <p class="stat-title">Churn</p>
+                <h2 class="stat-val">1.2%</h2>
+                <div class="stat-trend negative"><i class="ri-arrow-down-line"></i> 0.4%</div>
+            </div>
+        </section>
+
+        <section class="content-grid">
+            <div class="main-chart glass">
+                <div class="card-header">
+                    <h3>Revenue Overview</h3>
+                    <div class="dropdown">Last 30 Days <i class="ri-arrow-down-s-line"></i></div>
+                </div>
+                <div class="chart-container" id="chart-area">
+                    <!-- Chart visualization will go here via CSS/JS -->
+                </div>
+            </div>
+            <div class="activity-feed glass">
+                <div class="card-header">
+                    <h3>Recent Activity</h3>
+                </div>
+                <ul class="activity-list">
+                    <li>
+                        <div class="avatar">
+                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="User Avatar">
+                        </div>
+                        <div class="activity-info">
+                            <p><strong>Sarah M.</strong> upgraded to premium plan</p>
+                            <span class="time">2 mins ago</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="avatar pink-bg">
+                            <i class="ri-vip-crown-line"></i>
+                        </div>
+                        <div class="activity-info">
+                            <p>System update <strong>v2.4</strong> completed</p>
+                            <span class="time">1 hour ago</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="avatar">
+                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User Avatar">
+                        </div>
+                        <div class="activity-info">
+                            <p><strong>David K.</strong> deployed a new project</p>
+                            <span class="time">3 hours ago</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
