@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Random height between 20% and 90%
         const randomHeight = Math.floor(Math.random() * 70) + 20;
         
+        // Random value for the tooltip
+        const randomVal = Math.floor(Math.random() * 50) + 10;
+        bar.setAttribute('data-value', `$${randomVal}k`);
+        
         // Initial state
         bar.style.height = '0%';
         
@@ -18,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Animate in with slight delay
         setTimeout(() => {
             bar.style.height = `${randomHeight}%`;
-        }, i * 50 + 300);
+        }, i * 40 + 200); // slightly faster animation
     }
 
     // 2. Add subtle hover effects to cards that follow mouse
@@ -33,14 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.background = `
                 radial-gradient(
                     circle at ${x}px ${y}px, 
-                    rgba(255,255,255,0.08) 0%, 
-                    var(--glass-bg) 50%
+                    rgba(255,255,255,0.06) 0%, 
+                    var(--glass-bg) 60%
                 )
             `;
         });
         
         card.addEventListener('mouseleave', () => {
             card.style.background = 'var(--glass-bg)';
+        });
+    });
+
+    // 3. Simple Sidebar active state switching
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
         });
     });
 });

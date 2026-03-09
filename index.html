@@ -15,22 +15,42 @@
     <div class="blob-1"></div>
     <div class="blob-2"></div>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="brand">Nexus<span>.AI</span></a>
-            <div class="nav-links">
-                <a href="#dashboard" class="active">Dashboard</a>
-                <a href="#analytics">Analytics</a>
-                <a href="#settings">Settings</a>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass">
+            <div class="sidebar-header">
+                <a href="#" class="brand">Nexus<span>.AI</span></a>
             </div>
-            <div class="nav-actions">
-                <button class="btn btn-outline">Log in</button>
-                <button class="btn btn-primary">Get Started</button>
+            <ul class="nav-links">
+                <li><a href="#dashboard" class="active"><i class="ri-dashboard-line"></i> Dashboard</a></li>
+                <li><a href="#analytics"><i class="ri-bar-chart-box-line"></i> Analytics</a></li>
+                <li><a href="#projects"><i class="ri-folder-open-line"></i> Projects</a></li>
+                <li><a href="#team"><i class="ri-team-line"></i> Team</a></li>
+                <li><a href="#settings"><i class="ri-settings-4-line"></i> Settings</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="Alexi" class="avatar-sm">
+                    <div class="user-info">
+                        <h4>Alexi</h4>
+                        <p>Pro Plan</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
+        </aside>
 
-    <main class="dashboard-container">
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-bar glass">
+                    <i class="ri-search-line"></i>
+                    <input type="text" placeholder="Search projects, members, data...">
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn glass"><i class="ri-notification-3-line"></i><span class="badge">3</span></button>
+                    <button class="btn btn-primary"><i class="ri-add-line"></i> New Project</button>
+                </div>
+            </header>
         <header class="dashboard-header">
             <div>
                 <h1>Welcome back, Alexi</h1>
@@ -111,7 +131,8 @@
                 </ul>
             </div>
         </section>
-    </main>
+        </main>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
